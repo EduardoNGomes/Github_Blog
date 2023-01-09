@@ -9,6 +9,10 @@ export const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
 }
 
+body{
+  background-color: ${(props) => props.theme['base-background']}
+}
+
 body,input, textarea, button {
     font-family:  'Nunito', sans-serif;;
     font-weight: 400;
@@ -21,6 +25,11 @@ button {
     cursor: pointer;
     transition: all .3s;
     
+}
+
+input {
+  outline: none;
+  border-color: ${(props) => props.theme.blue};
 }
 li{
     list-style: none;

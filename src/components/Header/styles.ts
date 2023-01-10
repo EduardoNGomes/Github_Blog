@@ -17,7 +17,6 @@ export const Content = styled.div`
     width: 409px;
     height: 188px;
 
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     margin-top: 7rem;
   }
 

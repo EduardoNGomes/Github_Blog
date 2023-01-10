@@ -9,7 +9,7 @@ export const Header = () => {
     <HeaderContainer>
       <Content>
         <img src={left} alt="" id="left" />
-        <img src={logo} alt="" />
+        <img src={logo} alt="Logo GitHub Blog" />
         <img src={right} alt="" id="right" />
       </Content>
     </HeaderContainer>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { PublicationsCard } from '../PublicationsCard'
 import {
   PublicationsCardBox,
@@ -6,8 +6,30 @@ import {
   SearchContent,
 } from './style'
 
+import axios from 'axios'
+import { PublicationsProps } from './interface'
+import { useNavigate } from 'react-router-dom'
+
 export const Publications = () => {
+  const navigate = useNavigate()
   const [search, setSearch] = useState('')
+  const [publications, setPublications] = useState<PublicationsProps[]>([])
+
+  const getRepoData = async () => {
+    const response = await axios.get('https://api.github.com/search/issues', {
+      params: { q: 'repo:eduardongomes/Github_Blog' },
+    })
+
+    setPublications(response.data.items)
+  }
+
+  const handleDetails = (id: string) => {
+    navigate(`/details/${id}`)
+  }
+
+  useEffect(() => {
+    getRepoData()
+  }, [search])
 
   return (
     <PublicationsContainer>
@@ -25,7 +47,13 @@ export const Publications = () => {
       </SearchContent>
 
       <PublicationsCardBox>
-        <PublicationsCard />
+        {publications.map((publication) => (
+          <PublicationsCard
+            key={String(publication.id)}
+            publicationData={publication}
+            onClick={() => handleDetails(String(publication.number))}
+          />
+        ))}
       </PublicationsCardBox>
     </PublicationsContainer>
   )

@@ -1,3 +1,5 @@
+import axios from 'axios'
+import { useEffect } from 'react'
 import {
   FaAngleLeft,
   FaCalendarDay,
@@ -5,16 +7,28 @@ import {
   FaExternalLinkAlt,
   FaGithub,
 } from 'react-icons/fa'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { DetailsContainer, DetailsHeader, DetailsMain } from './styles'
 
 export const Details = () => {
   const navigate = useNavigate()
+  const params = useParams()
 
   const handleBack = () => {
     navigate(-1)
   }
+
+  useEffect(() => {
+    const getIssueData = async () => {
+      const response = await axios.get(
+        `https://api.github.com/repos/eduardongomes/Github_Blog/issues/${params.id}`,
+      )
+
+      console.log(response.data)
+    }
+    getIssueData()
+  }, [params])
   return (
     <DetailsContainer>
       <DetailsHeader>

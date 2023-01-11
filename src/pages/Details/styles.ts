@@ -103,4 +103,8 @@ export const DetailsMain = styled.main`
     background: ${(props) => props.theme['base-post']};
     border-radius: 2px;
   }
+
+  .markdown li {
+    list-style: disc;
+  }
 `

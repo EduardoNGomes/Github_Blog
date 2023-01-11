@@ -15,19 +15,18 @@ export const Publications = () => {
   const [search, setSearch] = useState('')
   const [publications, setPublications] = useState<PublicationsProps[]>([])
 
-  const getRepoData = async () => {
-    const response = await axios.get('https://api.github.com/search/issues', {
-      params: { q: 'repo:eduardongomes/Github_Blog' },
-    })
-
-    setPublications(response.data.items)
-  }
-
   const handleDetails = (id: string) => {
     navigate(`/details/${id}`)
   }
 
   useEffect(() => {
+    const getRepoData = async () => {
+      const response = await axios.get('https://api.github.com/search/issues', {
+        params: { q: `repo:eduardongomes/Github_Blog ${search}` },
+      })
+
+      setPublications(response.data.items)
+    }
     getRepoData()
   }, [search])
 

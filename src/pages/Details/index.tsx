@@ -11,6 +11,9 @@ import ReactMarkdown from 'react-markdown'
 import { useNavigate, useParams } from 'react-router-dom'
 import { IssueProps } from './IssueInterface'
 
+import { formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
+
 import { DetailsContainer, DetailsHeader, DetailsMain } from './styles'
 
 export const Details = () => {
@@ -22,6 +25,11 @@ export const Details = () => {
     navigate(-1)
   }
 
+  const date = issue.created_at
+    ? formatDistanceToNow(new Date(issue.created_at), {
+        locale: ptBR,
+      })
+    : ''
   useEffect(() => {
     const getIssueData = async () => {
       const response = await axios.get(
@@ -29,7 +37,6 @@ export const Details = () => {
       )
 
       setIssue(response.data)
-      console.log(response.data.user)
     }
     getIssueData()
   }, [params])
@@ -55,11 +62,11 @@ export const Details = () => {
           </li>
           <li>
             <FaCalendarDay size={18} />
-            <span>Há 1 dia</span>
+            <span>{date}</span>
           </li>
           <li>
             <FaComment size={18} />
-            <span>{issue.comments}comentários</span>
+            <span>{issue.comments} comentários</span>
           </li>
         </ul>
       </DetailsHeader>

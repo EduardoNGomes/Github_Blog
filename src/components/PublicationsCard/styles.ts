@@ -52,5 +52,6 @@ export const PublicationsCardContent = styled.div`
   .markdown code {
     font-weight: 400;
     font-size: 1rem;
+    display: block;
   }
 `

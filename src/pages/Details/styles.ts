@@ -79,40 +79,28 @@ export const DetailsHeader = styled.section`
   }
 `
 export const DetailsMain = styled.main`
-  padding: 3.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  p {
-    font-weight: 700;
+  .markdown {
+    padding: 3.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .markdown li,
+  .markdown a,
+  .markdown p,
+  .markdown {
+    font-weight: 400;
     font-size: 1.6rem;
-    line-height: 160%;
 
     color: ${(props) => props.theme['base-text']};
   }
+  .markdown code {
+    display: block;
+    font-weight: 400;
 
-  h3 a {
-    font-weight: 700;
     font-size: 1.6rem;
-    line-height: 160%;
-    color: ${(props) => props.theme.blue};
-  }
-
-  > div {
-    font-size: 16px;
-    line-height: 160%;
     padding: 1.6rem;
     background: ${(props) => props.theme['base-post']};
     border-radius: 2px;
-
-    p {
-      display: flex;
-      gap: 20px;
-    }
-    span {
-      font-size: 16px;
-
-      color: #4f6173;
-    }
   }
 `

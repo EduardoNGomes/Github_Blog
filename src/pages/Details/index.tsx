@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {
   FaAngleLeft,
   FaCalendarDay,
@@ -7,13 +7,16 @@ import {
   FaExternalLinkAlt,
   FaGithub,
 } from 'react-icons/fa'
+import ReactMarkdown from 'react-markdown'
 import { useNavigate, useParams } from 'react-router-dom'
+import { IssueProps } from './IssueInterface'
 
 import { DetailsContainer, DetailsHeader, DetailsMain } from './styles'
 
 export const Details = () => {
   const navigate = useNavigate()
   const params = useParams()
+  const [issue, setIssue] = useState({} as IssueProps)
 
   const handleBack = () => {
     navigate(-1)
@@ -25,7 +28,8 @@ export const Details = () => {
         `https://api.github.com/repos/eduardongomes/Github_Blog/issues/${params.id}`,
       )
 
-      console.log(response.data)
+      setIssue(response.data)
+      console.log(response.data.user)
     }
     getIssueData()
   }, [params])
@@ -37,17 +41,17 @@ export const Details = () => {
             <FaAngleLeft size={16} /> voltar
           </button>
 
-          <a href="" target="_blank">
+          <a href={issue.html_url} target="_blank" rel="noreferrer">
             ver no github <FaExternalLinkAlt size={12} />
           </a>
         </div>
 
-        <h1>JavaScript data types and data structures</h1>
+        <h1>{issue.title}</h1>
 
         <ul>
           <li>
             <FaGithub size={18} />
-            <span> cameronwll</span>
+            <span>{issue.user ? issue.user.login : ''}</span>
           </li>
           <li>
             <FaCalendarDay size={18} />
@@ -55,43 +59,13 @@ export const Details = () => {
           </li>
           <li>
             <FaComment size={18} />
-            <span>5 comentários</span>
+            <span>{issue.comments}comentários</span>
           </li>
         </ul>
       </DetailsHeader>
 
       <DetailsMain>
-        <p>
-          Programming languages all have built-in data structures, but these
-          often differ from one language to another. This article attempts to
-          list the built-in data structures available in JavaScript and what
-          properties they have. These can be used to build other data
-          structures. Wherever possible, comparisons with other languages are
-          drawn.
-        </p>
-        <h3>
-          <a href="">Dynamic typing</a>
-        </h3>
-        <p>
-          JavaScript is a loosely typed and dynamic language. Variables in
-          JavaScript are not directly associated with any particular value type,
-          and any variable can be assigned (and re-assigned) values of all
-          types:
-        </p>
-
-        <div>
-          <p>
-            let foo = 42;
-            <span>&#8725;&#8725; foo is now a number</span>
-          </p>
-          <p>
-            foo = &#8220;bar &#8221;
-            <span>&#8725;&#8725; foo is now a string</span>
-          </p>
-          <p>
-            foo = true; <span>&#8725;&#8725; foo is now a boolean</span>
-          </p>
-        </div>
+        <ReactMarkdown className="markdown">{issue.body}</ReactMarkdown>
       </DetailsMain>
     </DetailsContainer>
   )

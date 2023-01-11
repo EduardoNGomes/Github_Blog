@@ -14,6 +14,8 @@ export const ProfileContainer = styled.section`
   img {
     width: 148px;
     height: 148px;
+
+    border-radius: 8px;
   }
 `
 

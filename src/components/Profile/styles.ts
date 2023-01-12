@@ -17,6 +17,20 @@ export const ProfileContainer = styled.section`
 
     border-radius: 8px;
   }
+  @media (max-width: 768px) {
+    img {
+      width: 108px;
+      height: 108px;
+    }
+
+    @media (max-width: 500px) {
+      align-items: center;
+      img {
+        width: 88px;
+        height: 88px;
+      }
+    }
+  }
 `
 
 export const ProfileInformationContent = styled.div`
@@ -73,6 +87,19 @@ export const ProfileInformationContent = styled.div`
     span {
       font-size: 1.6rem;
       color: ${(props) => props.theme['base-subtitle']};
+    }
+  }
+
+  @media (max-width: 500px) {
+    div {
+      h1 {
+        font-weight: 700;
+        font-size: 1.6rem;
+      }
+    }
+
+    ul {
+      display: none;
     }
   }
 `

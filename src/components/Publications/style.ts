@@ -47,4 +47,8 @@ export const PublicationsCardBox = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3.2rem;
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
 `

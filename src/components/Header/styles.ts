@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
   background-color: ${(props) => props.theme['base-profile']};
+
   width: 100%;
 `
 
@@ -48,5 +49,43 @@ export const Content = styled.div`
     height: 236px;
 
     margin-top: 3rem;
+  }
+
+  @media (max-width: 820px) {
+    #left {
+      width: 259px;
+      height: 158px;
+    }
+
+    #right {
+      width: 221px;
+      height: 126px;
+    }
+  }
+  @media (max-width: 500px) {
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 25px;
+        height: 20px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+    }
+    #left {
+      width: 159px;
+      height: 88px;
+    }
+
+    #right {
+      width: 121px;
+      height: 106px;
+    }
   }
 `
